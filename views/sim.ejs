@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ./header %>
+    </header>
+
+    <main>
+            <input type="text" class="form-control" id="sentence1" placeholder="First Sentence">
+            <br/>
+            <input type="text" class="form-control" id="sentence2" placeholder="Second Sentence"> 
+            <br/>
+            <label class="radio-inline">
+                    <input type="radio" name="type-radio" id="inlineRadio1" value="inner-product" checked="true"> 内积
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="type-radio" id="inlineRadio2" value="cos"> 余弦
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="type-radio" id="inlineRadio3" value="jaccard"> Jaccard
+                  </label>    
+                  <br/>  
+                  <br/>            
+            <a class="btn btn-primary btn-lg" href="#" id="compare-button" role="button">Compare</a>
+            <br/>
+            <div class="jumbotron col-md-4 col-xs-12" id="result" style="display: none">
+                </div>        
+        </main>
+
+    <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#compare-button').click(function() {
+                        var s1 = $('#sentence1').val();
+                        var s2 = $('#sentence2').val();
+                        var type = $("input[name='type-radio']:checked").val();
+                        $.get('http://localhost:8080/compare?s1=' + s1 + '&s2=' + s2 + '&type=' + type, function(result) {  
+                            $('#result').css("display", "block");
+                            $('#result').text("相似度：" + JSON.parse(result).value);
+                        });
+                    });  
+                });  
+    </script>
+
+    <footer>
+        <% include ./footer %>
+    </footer>
+
+</body>
+
+</html>

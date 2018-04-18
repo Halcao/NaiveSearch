@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ./header %>
+    </header>
+
+    <main>
+        <input type="text" id='search-bar' class="form-control" placeholder="">
+    </br>
+    <a class="btn btn-primary btn-lg" href="#" id="search-button" role="button">Search</a>
+    <br/>
+    <br/>
+    <div class="jumbotron col-md-12" id="result" style="display: none">
+        </div>        
+    </main>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#search-button').click(function() {
+                var keyword = $('#search-bar').val();
+                $.get('http://localhost:8080/search?keyword=' + keyword, function(result) {  
+                    $('#result').css("display", "block");
+                    var html = "<dl>";
+                    result = JSON.parse(result).slice(0, 100);
+                    for (var item of result) {
+                        html += "<h5><dt><a href=\"" + item.url + "\" target=\"_blank\">" + item.title + "</a></dt></h5>";
+                        html += "<dd>" + item.summary + "...</dd>";
+                        html += "</br>"
+                    }
+                    html += "</dl>"
+                    $('#result').html(html);
+                });
+            });  
+        });  
+    </script>
+    <footer>
+        <% include ./footer %>
+    </footer>
+
+</body>
+
+</html>

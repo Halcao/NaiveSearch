@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ./header %>
+    </header>
+
+    <main>
+            <% for (var i=0; i<list.length; i++) {%>             
+            <h4><%= i+1 %>.<%= list[i].title %></h4>
+            <table class="table table-striped">
+                    <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Word</th>
+                              <th>TF-IDF</th>
+                            </tr>
+                          </thead>  
+                <tbody>
+                    <% for (var j=0; j<list[i].tf_idf.length; j++) {%>             
+                      <tr>
+                            <th scope="row"><%= j+1 %></th>
+                            <td><%= list[i].tf_idf[j].word %></td>
+                            <td><%= list[i].tf_idf[j].tf_idf %></td>
+                          </tr>                  
+                    <% } %>
+                </tbody>
+                </table>  
+            <% } %>             
+            <!-- <p>
+                <a class="btn btn-primary btn-lg" href="#" role="button" id="start-button">Start</a>
+            </p>
+
+
+
+            <script type="text/javascript">  
+                $(document).ready(function() {  
+                    $('#start-button').click(function() {
+                        var result = locals.tf_idf();
+                        // $.get('localhost/request', function(list) {  
+
+                        // });  
+                    });  
+                });  
+            </script>             -->
+    </main>
+
+    <footer>
+        <% include ./footer %>
+    </footer>
+
+</body>
+
+</html>

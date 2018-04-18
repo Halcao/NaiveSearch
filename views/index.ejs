@@ -1,0 +1,47 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ./header %>
+    </header>
+
+    <main>
+        <div class="jumbotron col-md-4 col-sm-6 col-xs-12">
+            <h1>TF-IDF</h1>
+            <p>对语料库中的词语进行TF-IDF统计</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/tf_idf" role="button">Learn more</a>
+            </p>
+        </div>
+        <div class="jumbotron col-md-4 col-sm-6 col-xs-12">
+            <h1>SIM</h1>
+            <p>比较输入的任意两个句子的相似度</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/sim" role="button">Learn more</a>
+            </p>
+        </div>
+
+        <div class="jumbotron col-md-4 col-sm-6 col-xs-12">
+            <h1>SJet</h1>
+            <p>基于向量空间模型（VSM）的搜索引擎</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/sjet" role="button">Learn more</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <% include ./footer %>
+    </footer>
+
+</body>
+
+</html>
